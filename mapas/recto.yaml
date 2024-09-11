@@ -1,0 +1,25 @@
+# Linear stretch of road. Basic test case.
+tiles:
+  - [grass, grass, grass, grass, grass,grass, grass, grass, grass, grass]
+  - [straight/E, straight/E, straight/E, straight/E, straight/E,straight/E, straight/E, straight/E, straight/E, straight/E]
+  - [grass, grass, grass, grass, grass,grass, grass, grass, grass, grass]
+
+# objects:
+  # - kind: duckie
+  #   pos: [0.5, 0.5]  # Posición del primer pato
+  #   rotate: 60
+  #   static: true
+  #   optional: false
+
+  # - kind: duckie
+  #   height: 0.06
+  #   pos: [2, 7.70]  # Posición del segundo pato, separado del primero
+  #   rotate: 60
+  #   static: true
+  #   optional: false
+
+# Always start driving on the leftmost tile
+# The position and direction of the agent on the tile will be randomized
+# start_tile: [0, 1]
+
+tile_size: 0.585
