@@ -38,7 +38,7 @@ class TimestepPrinterCallback(BaseCallback):
             print(f"Modelo guardado en: {model_save_path}")
        
             
-
+print('Estoy entrenando?')
 
 def make_duckietown_env(seed=None):
     return Simulator(
