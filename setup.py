@@ -24,19 +24,19 @@ version = get_version(filename="src/gym_duckietown/__init__.py")
 line = "daffy"
 
 install_requires = [
-    "gym>=0.17.1",
-    "numpy>=1.10.0,<=1.20.0",
-    "pyglet",
+    "gym==0.17.1",
+    # "numpy==1.20.0",
+    "pyglet==1.5.0",
     # 'pyglet',
-    "pyzmq>=16.0.0",
-    "opencv-python>=3.4",
-    "PyYAML>=3.11",
-    f"duckietown-world-{line}",
-    "PyGeometry-z6",
-    "carnivalmirror==0.6.2",
-    "zuper-commons-z6",
-    "typing_extensions",
-    "Pillow",
+    "pyzmq==26.0.0",
+    "opencv-python==4.9.0.80", #opencv-python==4.9.0.80
+    "PyYAML==6.0.1",
+    "duckietown-world-daffy==6.4.3",
+    "PyGeometry-z6==2.1.4",
+    "carnivalmirror==0.6.2", 
+    "zuper-commons-z6==6.2.4",
+    "typing_extensions==4.8.0",
+    "Pillow==10.2.0",
 ]
 
 system_version = tuple(sys.version_info)[:3]
@@ -50,7 +50,7 @@ setup(
     package_dir={"": "src"},
     packages=find_packages("src"),
     zip_safe=False,
-    version=version,
+    version='6.4.3',
     keywords="duckietown, environment, agent, rl, openaigym, openai-gym, gym",
     include_package_data=True,
     install_requires=install_requires,
