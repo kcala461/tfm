@@ -42,6 +42,14 @@ if args.env_name and args.env_name.find("Duckietown") != -1:
         distortion=args.distortion,
         camera_rand=args.camera_rand,
         dynamics_rand=args.dynamics_rand,
+        start_pose=[[0.35, 0, 0.35], -0],
+        # user_tile_start=[0,1],
+        # goal=[9,1],
+        # user_tile_start=[2,1],
+        # goal=[2,2],
+        user_tile_start=[1,1],
+        goal=[2,3],
+        
     )
 else:
     env = gym.make(args.env_name)
