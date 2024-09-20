@@ -1,0 +1,13 @@
+# Linear stretch of road. Basic test case.
+tiles:
+  
+  
+  - [grass, grass, grass, grass, curve_right/N, grass]
+  - [grass, grass, grass, straight/N, straight/N ,grass]
+  - [grass, grass, grass, straight/N, straight/N, grass]
+  - [grass, straight/E, straight/E, straight/E, curve_right/S, grass]
+  - [grass, grass, grass, grass, grass,grass]
+
+
+
+tile_size: 0.585

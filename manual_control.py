@@ -13,6 +13,7 @@ import gym
 import numpy as np
 import pyglet
 from pyglet.window import key
+import time
 
 from gym_duckietown.envs import DuckietownEnv
 
@@ -34,7 +35,7 @@ args = parser.parse_args()
 if args.env_name and args.env_name.find("Duckietown") != -1:
     env = DuckietownEnv(
         seed=args.seed,
-        map_name=args.map_name,
+        map_name= 'mapas/mapaCurva', #'' args.map_name straight_road test_mio small_loop_only_duckies loop_pedestrians
         draw_curve=args.draw_curve,
         draw_bbox=args.draw_bbox,
         domain_rand=args.domain_rand,
@@ -42,13 +43,13 @@ if args.env_name and args.env_name.find("Duckietown") != -1:
         distortion=args.distortion,
         camera_rand=args.camera_rand,
         dynamics_rand=args.dynamics_rand,
-        start_pose=[[0.35, 0, 0.35], -0],
+        start_pose=[[0.35, 0, 0.35], 0],
         # user_tile_start=[0,1],
         # goal=[9,1],
         # user_tile_start=[2,1],
         # goal=[2,2],
-        user_tile_start=[1,1],
-        goal=[2,3],
+        user_tile_start=[0,0],
+        goal=[4,4],
         
     )
 else:
@@ -126,7 +127,7 @@ def update(dt):
         action *= 1.5
 
     obs, reward, done, info = env.step(action)
-    print("step_count = %s, reward=%.3f" % (env.unwrapped.step_count, reward))
+    # print("step_count = %s, reward=%.3f" % (env.unwrapped.step_count, reward))
 
     if key_handler[key.RETURN]:
 
@@ -142,9 +143,9 @@ def update(dt):
     env.render()
 
 
-pyglet.clock.schedule_interval(update, 1.0 / env.unwrapped.frame_rate)
-
-# Enter main event loop
-pyglet.app.run()
+dt = 0.01
+while True:
+    update(dt)
+    time.sleep(dt)
 
 env.close()

@@ -1881,9 +1881,10 @@ class Simulator(gym.Env):
             # Los ángulos negativos se transforman sumándoles 360° (0° a 360°)
             angulonuevo =  360 + angulo
             
-        if 60 < angulonuevo < 300:
+        if 92 < angulonuevo < 268:
             multiplicador = -1
         
+        # print(angulonuevo)
         
         return multiplicador
             
@@ -1931,13 +1932,30 @@ class Simulator(gym.Env):
             reward = 40 * col_penalty
         else:
             # Calcula la distancia a la meta
-            dist_goal = self.get_dist_goal(pos) 
+            dist_goal = self.get_dist_goal(pos) * 1.5       
        
        
-            multipl = self.transformar_a_360(np.rad2deg(self.cur_angle))
+       
+       
+            # multipl = self.transformar_a_360(np.rad2deg(self.cur_angle))
+            
+            
+            check = self.direccion_contraria(np.rad2deg(self.cur_angle), lp.angle_deg)
+            
+            
+            if lp.dot_dir < 0.90:
+                multipl = -1
+            else:
+                multipl = 1
+            
+            
+            
+            # print(multipl)
             
             velocidad = 20 * speed
             direccion = lp.dot_dir * multipl
+            
+            # print(direccion)
             
             distancia = -10 * np.abs(lp.dist)
             penalizacion =  (40 * col_penalty)
@@ -1947,8 +1965,8 @@ class Simulator(gym.Env):
                 distancia = distancia
             else:
                 distancia = distancia * 5
+                      
             
-        
             
             if velocidad < 0:
                 if direccion < 0:
@@ -1964,7 +1982,34 @@ class Simulator(gym.Env):
         return reward
   
         
-    
+    import numpy as np
+
+
+    def normalize_angle(self, angle):
+       return (angle + 180) % 360 - 180
+
+    def direccion_contraria(self, angle, angle_deg):
+            
+        
+        if angle >= 0:
+            # Los ángulos positivos ya están en el rango correcto (0° a 180°)
+            angulonuevo = angle
+        else:
+            # Los ángulos negativos se transforman sumándoles 360° (0° a 360°)
+            angulonuevo =  360 + angle       
+        
+        # Dirección del carril (en grados)
+        lane_direction = angle_deg
+        
+        # Comparar las direcciones (diferencia absoluta)
+        angle_diff = abs(angulonuevo - lane_direction)
+        
+        # Si la diferencia de ángulo está entre 170 y 190 grados, está en dirección contraria
+        if 96 < angle_diff < 190:
+            return -1
+        else:
+            return 1
+
 
     def step(self, action: np.ndarray):
         # Mantener las acciones en el rango [-1, 1]
