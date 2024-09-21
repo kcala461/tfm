@@ -1888,14 +1888,6 @@ class Simulator(gym.Env):
         return multiplicador
             
         
-        
-        
-        
-        
-        
-        
-        
-        
 
     def get_dist_goal(self, pos):
         # Obtén las coordenadas de la meta
