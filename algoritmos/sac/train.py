@@ -40,27 +40,26 @@ class TimestepPrinterCallback(BaseCallback):
 def make_duckietown_env(seed=None):
     return Simulator(
         seed=seed,  
-        map_name=r"..\..\mapas\recto", 
-        max_steps=5000,  #cambiarlo
+        map_name=r"../../mapas/mapaCurva",
+        max_steps=8000,
         domain_rand=1,
         camera_width=640,
         camera_height=480,
-        accept_start_angle_deg=1,  
-        
+        accept_start_angle_deg=1,
         full_transparency=False,
         distortion=True,
         style='synthetic',
         draw_curve=True,
         start_pose=[[0.35, 0, 0.35], 0],
-        user_tile_start=[0,1],
-        goal=[9,1],
+        user_tile_start=[0,0],
+        goal=[4,4],
     )
 
 # Crear un entorno vectorizado para el entrenamiento
 vec_env = make_vec_env(make_duckietown_env, n_envs=1, seed=123)
 
 # Callback para guardar acciones, recompensas y el modelo
-model_path = "model/ModeloLineaRecta"
+model_path = "model/SACModeloCurva"
 save_freq = 100000  # Frecuencia para guardar el modelo
 
 
@@ -70,5 +69,5 @@ timestep_printer = TimestepPrinterCallback(print_freq=50000, save_freq=save_freq
 model = SAC("MlpPolicy", vec_env, verbose=1, device='cuda', batch_size=1024)
 
 
-model.learn(total_timesteps=4000000, callback=timestep_printer, log_interval=100000)
-model.save(r"model/ModeloLineaRecta")
+model.learn(total_timesteps=1300000, callback=timestep_printer, log_interval=100000)
+model.save(model_path)

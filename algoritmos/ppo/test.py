@@ -12,19 +12,19 @@ print(f"Utilizando dispositivo: {device}")
 def make_duckietown_env(seed=None):
     return Simulator(
         seed=seed,  
-        map_name="straight_road",  
-        max_steps=80000,  
-        domain_rand=0,
+        map_name=r"../../mapas/mapaCurva",
+        max_steps=8000,
+        domain_rand=1,
         camera_width=640,
         camera_height=480,
-        accept_start_angle_deg=1,  
+        accept_start_angle_deg=1,
+        full_transparency=False,
+        distortion=True,
+        style='synthetic',
+        draw_curve=True,
         start_pose=[[0.35, 0, 0.35], 0],
         user_tile_start=[0,0],
-        style='synthetic',
-        # user_tile_start=[0,0],
-        # draw_curve=True,
-        # draw_bbox=True,
-        # start_pose=[[0.35, 0, 0.35], -1]
+        goal=[4,4],
     )
 
 # Crear un entorno para pruebas
