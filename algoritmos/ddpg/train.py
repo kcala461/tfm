@@ -86,5 +86,5 @@ timestep_printer = TimestepPrinterCallback(print_freq=50000, save_path=save_path
 
 model = DDPG("MlpPolicy", vec_env, action_noise=action_noise, verbose=1, device='cuda', batch_size=1024)
 
-model.learn(total_timesteps=4000000, callback=timestep_printer, log_interval=100000)
-model.save(r"model/ModeloLineaRecta")
+model.learn(total_timesteps=2500000, callback=timestep_printer, log_interval=100000)
+model.save(model_path)

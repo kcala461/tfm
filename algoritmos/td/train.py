@@ -78,7 +78,7 @@ model = TD3("MlpPolicy", vec_env, action_noise=action_noise, verbose=1, device='
 
 
 model.learn(total_timesteps=4000000, callback=timestep_printer, log_interval=100000)
-model.save(r"model/ModeloLineaRecta")
+model.save(model_path)
 
 
 

@@ -71,4 +71,4 @@ model = SAC("MlpPolicy", vec_env, verbose=1, device='cuda', batch_size=1024)
 
 
 model.learn(total_timesteps=4000000, callback=timestep_printer, log_interval=100000)
-model.save(r"model/ModeloLineaRecta")
+model.save(model_path)
