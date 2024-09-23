@@ -68,8 +68,9 @@ def make_duckietown_env(seed=None):
 
 
 # Crear un entorno vectorizado para el entrenamiento
-vec_env = make_vec_env(make_duckietown_env, n_envs=1, seed=42)
-
+vec_env = make_vec_env(make_duckietown_env, n_envs=1, seed=123)
+# print(42)
+# 42 es la semilla que sirve pero estoy haciendo pruebas con 123
 # Configuración de la exploración mediante ruido
 n_actions = vec_env.action_space.shape[-1]
 action_noise = NormalActionNoise(mean=np.zeros(n_actions), sigma=0.1 * np.ones(n_actions))
